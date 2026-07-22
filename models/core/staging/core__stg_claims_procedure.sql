@@ -139,5 +139,5 @@ left outer join {{ ref('terminology__icd_10_pcs') }} as icd
     on unpivot_cte.source_code = icd.icd_10_pcs
 left outer join {{ ref('terminology__hcpcs_level_2') }} as hcpcs
     on unpivot_cte.source_code = hcpcs.hcpcs
-left outer join distinct_claim_encounters as med
+inner join distinct_claim_encounters as med
   on unpivot_cte.claim_id = med.claim_id
