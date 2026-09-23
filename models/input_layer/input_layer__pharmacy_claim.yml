@@ -40,7 +40,6 @@ models:
       - name: claim_id
         description: >-
           Identifier for a pharmacy claim. Most pharmacy claims have one claim line, but the same claim_id may appear on multiple rows when a source represents a single claim with multiple lines. This value should be populated on every row and should remain consistent across all lines for the same claim.
-        required_for_data_marts: ['claims_enrollment', 'cms_chronic_conditions', 'hcc_recapture', 'pharmacy', 'quality_measures', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -78,10 +77,10 @@ models:
           meta:
             data_type: varchar
             is_primary_key: true
+            required_for_data_marts: ['claims_enrollment', 'cms_chronic_conditions', 'hcc_recapture', 'pharmacy', 'quality_measures', 'semantic_layer']
       - name: claim_line_number
         description: >-
           Line number for the pharmacy claim line represented by the row. Values should be positive integers and should uniquely identify each line within a claim_id. If the source does not provide line numbers and each claim_id has one row, set claim_line_number to 1.
-        required_for_data_marts: ['claims_enrollment', 'pharmacy', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -119,10 +118,10 @@ models:
           meta:
             data_type: integer
             is_primary_key: true
+            required_for_data_marts: ['claims_enrollment', 'pharmacy', 'semantic_layer']
       - name: person_id
         description: >-
           Globally unique identifier for the person who received the dispensed medication. A person may have multiple member IDs over time or across plans, but person_id should remain stable for the same person.
-        required_for_data_marts: ['claims_enrollment', 'cms_chronic_conditions', 'financial_pmpm', 'hcc_recapture', 'hcc_suspecting', 'pharmacy', 'quality_measures', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -145,10 +144,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['claims_enrollment', 'cms_chronic_conditions', 'financial_pmpm', 'hcc_recapture', 'hcc_suspecting', 'pharmacy', 'quality_measures', 'semantic_layer']
       - name: member_id
         description: >-
           Identifier assigned by the payer or health plan for the person's coverage. This should identify the member associated with the pharmacy claim and should be consistent across all lines for the same claim_id.
-        required_for_data_marts: ['claims_enrollment', 'financial_pmpm', 'pharmacy']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -160,10 +159,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['claims_enrollment', 'financial_pmpm', 'pharmacy']
       - name: payer
         description: >-
           Name of the payer responsible for the pharmacy claim, for example Aetna, Blue Cross Blue Shield, or Medicare Part D. If the source data is scoped to one payer, this value may be hard-coded.
-        required_for_data_marts: ['claims_enrollment', 'financial_pmpm', 'hcc_recapture', 'hcc_suspecting', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -185,10 +184,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['claims_enrollment', 'financial_pmpm', 'hcc_recapture', 'hcc_suspecting', 'semantic_layer']
       - name: plan
         description: >-
           Name of the health insurance plan or product associated with the pharmacy claim, for example Aetna PPO, Humana HMO, or a Medicare Part D plan. If unavailable in the source, this value may be hard-coded to a stable plan value for the data source.
-        required_for_data_marts: ['claims_enrollment', 'financial_pmpm', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -210,10 +209,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['claims_enrollment', 'financial_pmpm', 'semantic_layer']
       - name: prescribing_provider_npi
         description: >-
           NPI of the provider who prescribed the medication. This should be a 10-digit NPI stored as a string when available.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -248,10 +247,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: []
       - name: dispensing_provider_npi
         description: >-
           NPI of the provider or pharmacy that dispensed the medication. This often identifies the dispensing pharmacy organization rather than an individual pharmacist and should be stored as a 10-digit string when available.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -286,10 +285,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: []
       - name: dispensing_date
         description: >-
           Date the medication was dispensed to the patient, formatted as YYYY-MM-DD. This may be called fill date in source data.
-        required_for_data_marts: ['financial_pmpm', 'hcc_suspecting', 'pharmacy', 'quality_measures', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -346,10 +345,10 @@ models:
         config:
           meta:
             data_type: date
+            required_for_data_marts: ['financial_pmpm', 'hcc_suspecting', 'pharmacy', 'quality_measures', 'semantic_layer']
       - name: ndc_code
         description: >-
           National Drug Code for the medication dispensed on the pharmacy claim line. Tuva expects the 11-digit billing format with dashes removed. If the source contains a dashed 10-digit NDC, convert it to the 11-digit 5-4-2 format by adding the missing leading zero to the appropriate segment.
-        required_for_data_marts: ['cms_chronic_conditions', 'hcc_suspecting', 'pharmacy', 'quality_measures', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -371,10 +370,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['cms_chronic_conditions', 'hcc_suspecting', 'pharmacy', 'quality_measures', 'semantic_layer']
       - name: quantity
         description: >-
           Quantity of the medication dispensed on the pharmacy claim line. This should be a positive value after adjustments, denials, reversals, voids, and replacement claims have been handled.
-        required_for_data_marts: ['pharmacy', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -394,10 +393,10 @@ models:
         config:
           meta:
             data_type: integer
+            required_for_data_marts: ['pharmacy', 'semantic_layer']
       - name: days_supply
         description: >-
           Number of days the dispensed medication is expected to last. This should be a positive integer after adjustments, denials, reversals, voids, and replacement claims have been handled.
-        required_for_data_marts: ['pharmacy', 'quality_measures', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -418,10 +417,10 @@ models:
         config:
           meta:
             data_type: integer
+            required_for_data_marts: ['pharmacy', 'quality_measures', 'semantic_layer']
       - name: refills
         description: >-
           Refill number or refill count associated with the dispensed prescription, as represented by the source. In many pharmacy sources, 0 represents the original fill, 1 represents the first refill, and so on.
-        required_for_data_marts: ['pharmacy']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -433,10 +432,10 @@ models:
         config:
           meta:
             data_type: integer
+            required_for_data_marts: ['pharmacy']
       - name: paid_date
         description: >-
           Date the pharmacy claim was paid or processed for payment by the payer, formatted as YYYY-MM-DD.
-        required_for_data_marts: ['claims_enrollment', 'cms_chronic_conditions', 'financial_pmpm', 'hcc_suspecting', 'pharmacy', 'quality_measures', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -495,10 +494,10 @@ models:
         config:
           meta:
             data_type: date
+            required_for_data_marts: ['claims_enrollment', 'cms_chronic_conditions', 'financial_pmpm', 'hcc_suspecting', 'pharmacy', 'quality_measures', 'semantic_layer']
       - name: paid_amount
         description: >-
           Amount paid by the payer for the pharmacy claim line. This should represent the final adjudicated payer-paid amount after adjustments, denials, reversals, voids, and replacement claims have been handled.
-        required_for_data_marts: ['financial_pmpm', 'pharmacy', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -541,10 +540,10 @@ models:
         config:
           meta:
             data_type: float
+            required_for_data_marts: ['financial_pmpm', 'pharmacy', 'semantic_layer']
       - name: allowed_amount
         description: >-
           Total allowed amount for the pharmacy claim line. This generally represents the sum of the payer-paid amount and patient responsibility amounts, including coinsurance, copayment, and deductible amounts, when those fields are available.
-        required_for_data_marts: ['financial_pmpm', 'pharmacy', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -578,10 +577,10 @@ models:
         config:
           meta:
             data_type: float
+            required_for_data_marts: ['financial_pmpm', 'pharmacy', 'semantic_layer']
       - name: charge_amount
         description: >-
           Amount charged or billed by the pharmacy for the medication before payer adjudication, discounts, or payment adjustments.
-        required_for_data_marts: ['semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -615,10 +614,10 @@ models:
         config:
           meta:
             data_type: float
+            required_for_data_marts: ['semantic_layer']
       - name: coinsurance_amount
         description: >-
           Coinsurance amount owed by the member for the pharmacy claim line. This is the member responsibility amount based on a percentage of allowed cost.
-        required_for_data_marts: ['semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -650,10 +649,10 @@ models:
         config:
           meta:
             data_type: float
+            required_for_data_marts: ['semantic_layer']
       - name: copayment_amount
         description: >-
           Copayment amount owed by the member for the pharmacy claim line. This is the fixed member responsibility amount for the dispensed medication when applicable.
-        required_for_data_marts: ['semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -685,10 +684,10 @@ models:
         config:
           meta:
             data_type: float
+            required_for_data_marts: ['semantic_layer']
       - name: deductible_amount
         description: >-
           Deductible amount owed by the member for the pharmacy claim line before other coverage or cost sharing is applied.
-        required_for_data_marts: ['semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -720,10 +719,10 @@ models:
         config:
           meta:
             data_type: float
+            required_for_data_marts: ['semantic_layer']
       - name: in_network_flag
         description: >-
           Indicator for whether the pharmacy claim was in network. Accepted values are 1 for in network, 0 for out of network, and null when unknown.
-        required_for_data_marts: ['semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -743,10 +742,10 @@ models:
         config:
           meta:
             data_type: boolean
+            required_for_data_marts: ['semantic_layer']
       - name: file_name
         description: >-
           Name of the source file from which the pharmacy claim line originated. This field is useful for tracing source records across file-based claims extracts.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -758,10 +757,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: []
       - name: file_date
         description: >-
           Date associated with the source file, formatted as YYYY-MM-DD. This may represent the delivery date, reporting period, or date embedded in the file name.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -784,10 +783,10 @@ models:
         config:
           meta:
             data_type: date
+            required_for_data_marts: []
       - name: ingest_datetime
         description: >-
           Date and time the source pharmacy claim line or file was loaded into the data warehouse. This is useful when multiple versions of the same claim line are received over time.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -822,10 +821,10 @@ models:
         config:
           meta:
             data_type: timestamp
+            required_for_data_marts: []
       - name: data_source
         description: >-
           User-defined name that identifies the source of the pharmacy claim data, for example BCBS Tennessee, Medicare Part D, or Medicaid Ohio. This value should be populated on every record and should be consistent across all lines for the same claim_id.
-        required_for_data_marts: ['claims_enrollment', 'cms_chronic_conditions', 'financial_pmpm', 'hcc_recapture', 'hcc_suspecting', 'pharmacy', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -846,3 +845,4 @@ models:
           meta:
             data_type: varchar
             is_primary_key: true
+            required_for_data_marts: ['claims_enrollment', 'cms_chronic_conditions', 'financial_pmpm', 'hcc_recapture', 'hcc_suspecting', 'pharmacy', 'semantic_layer']

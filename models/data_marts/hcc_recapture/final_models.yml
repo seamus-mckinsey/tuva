@@ -8,7 +8,7 @@ models:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_hcc_recapture
         {% else %}hcc_recapture{%- endif -%}
       alias: recapture_rates
-      tags: [ "hcc_recapture", "final" ]
+      tags: ["hcc_recapture", "final"]
       materialized: table
     data_tests:
       - dbt_utils.unique_combination_of_columns:
@@ -35,49 +35,37 @@ models:
             data_type: integer
             is_primary_key: true
       - name: no_suspects_closed_hccs
-        description: The number of HCCs that were closed in the payment year excluding
-          suspect HCCs. See the definition of closed HCCs in the gap_status
-          field in the gap_status model.
+        description: The number of HCCs that were closed in the payment year excluding suspect HCCs. See the definition of closed HCCs in the gap_status field in the gap_status model.
         config:
           meta:
             data_type: integer
       - name: no_suspects_open_hccs
-        description: The number of HCCs that are open in the payment year excluding
-          suspect HCCs. See the definition of open HCCs in the gap_status field
-          in the gap_status model.
+        description: The number of HCCs that are open in the payment year excluding suspect HCCs. See the definition of open HCCs in the gap_status field in the gap_status model.
         config:
           meta:
             data_type: integer
       - name: no_suspects_total_hccs
-        description: The total number of HCCs that were open or closed in the payment
-          year excluding suspect HCCs. Excludes new and inappropriate for
-          recapture HCCs.
+        description: The total number of HCCs that were open or closed in the payment year excluding suspect HCCs. Excludes new and inappropriate for recapture HCCs.
         config:
           meta:
             data_type: integer
       - name: no_suspects_recapture_rate
-        description: Closed HCCs divided by no suspects total HCCs in the given payment
-          year excluding suspect HCCs.
+        description: Closed HCCs divided by no suspects total HCCs in the given payment year excluding suspect HCCs.
         config:
           meta:
             data_type: number
       - name: closed_hccs
-        description: The number of HCCs that were closed in the payment year. See the
-          definition of closed HCCs in the gap_status field in the gap_status
-          model.
+        description: The number of HCCs that were closed in the payment year. See the definition of closed HCCs in the gap_status field in the gap_status model.
         config:
           meta:
             data_type: integer
       - name: open_hccs
-        description: The number of HCCs that are open in the payment year. See the
-          definition of open HCCs in the gap_status field in the gap_status
-          model.
+        description: The number of HCCs that are open in the payment year. See the definition of open HCCs in the gap_status field in the gap_status model.
         config:
           meta:
             data_type: integer
       - name: total_hccs
-        description: The total number of HCCs that were open or closed in the payment
-          year. Excludes new and inappropriate for recapture HCCs.
+        description: The total number of HCCs that were open or closed in the payment year. Excludes new and inappropriate for recapture HCCs.
         config:
           meta:
             data_type: integer
@@ -94,7 +82,7 @@ models:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_hcc_recapture
         {% else %}hcc_recapture{%- endif -%}
       alias: recapture_rates_monthly
-      tags: [ "hcc_recapture", "final" ]
+      tags: ["hcc_recapture", "final"]
       materialized: table
     data_tests:
       - dbt_utils.unique_combination_of_columns:
@@ -131,49 +119,37 @@ models:
             data_type: integer
             is_primary_key: true
       - name: no_suspects_closed_hccs
-        description: The number of HCCs that were closed the payment month excluding
-          suspect HCCs. See the definition of closed HCCs in the gap_status
-          field in the gap_status model.
+        description: The number of HCCs that were closed the payment month excluding suspect HCCs. See the definition of closed HCCs in the gap_status field in the gap_status model.
         config:
           meta:
             data_type: integer
       - name: no_suspects_open_hccs
-        description: The number of HCCs that are open in the payment month excluding
-          suspect HCCs. See the definition of open HCCs in the gap_status field
-          in the gap_status model.
+        description: The number of HCCs that are open in the payment month excluding suspect HCCs. See the definition of open HCCs in the gap_status field in the gap_status model.
         config:
           meta:
             data_type: integer
       - name: no_suspects_total_hccs
-        description: The total number of HCCs that were open or closed in the payment
-          month excluding suspect HCCs. Excludes new and inappropriate for
-          recapture HCCs.
+        description: The total number of HCCs that were open or closed in the payment month excluding suspect HCCs. Excludes new and inappropriate for recapture HCCs.
         config:
           meta:
             data_type: integer
       - name: no_suspects_recapture_rate
-        description: Closed HCCs divided by Total HCCs in the given payment month
-          excluding suspect HCCs.
+        description: Closed HCCs divided by Total HCCs in the given payment month excluding suspect HCCs.
         config:
           meta:
             data_type: number
       - name: closed_hccs
-        description: The number of HCCs that were closed the payment month. See the
-          definition of closed HCCs in the gap_status field in the gap_status
-          model.
+        description: The number of HCCs that were closed the payment month. See the definition of closed HCCs in the gap_status field in the gap_status model.
         config:
           meta:
             data_type: integer
       - name: open_hccs
-        description: The number of HCCs that are open in the payment month. See the
-          definition of open HCCs in the gap_status field in the gap_status
-          model.
+        description: The number of HCCs that are open in the payment month. See the definition of open HCCs in the gap_status field in the gap_status model.
         config:
           meta:
             data_type: integer
       - name: total_hccs
-        description: The total number of HCCs that were open or closed in the payment
-          month. Excludes new and inappropriate for recapture HCCs.
+        description: The total number of HCCs that were open or closed in the payment month. Excludes new and inappropriate for recapture HCCs.
         config:
           meta:
             data_type: integer
@@ -190,7 +166,7 @@ models:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_hcc_recapture
         {% else %}hcc_recapture{%- endif -%}
       alias: recapture_rates_monthly_ytd
-      tags: [ "hcc_recapture", "final" ]
+      tags: ["hcc_recapture", "final"]
       materialized: table
     data_tests:
       - dbt_utils.unique_combination_of_columns:
@@ -227,22 +203,17 @@ models:
             data_type: integer
             is_primary_key: true
       - name: monthly_closed_hccs
-        description: The number of HCCs that were closed the payment month. See the
-          definition of closed HCCs in the gap_status field in the gap_status
-          model.
+        description: The number of HCCs that were closed the payment month. See the definition of closed HCCs in the gap_status field in the gap_status model.
         config:
           meta:
             data_type: integer
       - name: monthly_open_hccs
-        description: The number of HCCs that are open in the payment month. See the
-          definition of open HCCs in the gap_status field in the gap_status
-          model.
+        description: The number of HCCs that are open in the payment month. See the definition of open HCCs in the gap_status field in the gap_status model.
         config:
           meta:
             data_type: integer
       - name: monthly_total_hccs
-        description: The total number of HCCs that were open or closed in the payment
-          month. Excludes new and inappropriate for recapture HCCs.
+        description: The total number of HCCs that were open or closed in the payment month. Excludes new and inappropriate for recapture HCCs.
         config:
           meta:
             data_type: integer
@@ -252,16 +223,12 @@ models:
           meta:
             data_type: number
       - name: ytd_closed_hccs
-        description: The number of HCCs that were closed the payment month + all prior
-          payment months in the payment year. See the definition of closed HCCs
-          in the gap_status field in the gap_status model.
+        description: The number of HCCs that were closed the payment month + all prior payment months in the payment year. See the definition of closed HCCs in the gap_status field in the gap_status model.
         config:
           meta:
             data_type: integer
       - name: ytd_open_hccs
-        description: The number of HCCs that are open in the payment month + all prior
-          payment months in the payment year. See the definition of open HCCs in
-          the gap_status field in the gap_status model.
+        description: The number of HCCs that are open in the payment month + all prior payment months in the payment year. See the definition of open HCCs in the gap_status field in the gap_status model.
         config:
           meta:
             data_type: integer
@@ -271,8 +238,7 @@ models:
           meta:
             data_type: integer
       - name: ytd_recapture_rate
-        description: The running total of closed HCCs divided by total HCCs in a payment
-          year.
+        description: The running total of closed HCCs divided by total HCCs in a payment year.
         config:
           meta:
             data_type: number
@@ -284,7 +250,7 @@ models:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_hcc_recapture
         {% else %}hcc_recapture{%- endif -%}
       alias: hcc_status
-      tags: [ "hcc_recapture", "final" ]
+      tags: ["hcc_recapture", "final"]
       materialized: table
     data_tests:
       - dbt_utils.unique_combination_of_columns:
@@ -318,8 +284,7 @@ models:
             data_type: varchar
             is_primary_key: true
       - name: data_source
-        description: The name of the data source origin. Filled in by the user in the
-          input layer files.
+        description: The name of the data source origin. Filled in by the user in the input layer files.
         config:
           meta:
             data_type: varchar
@@ -337,9 +302,7 @@ models:
             data_type: integer
             is_primary_key: true
       - name: recorded_date
-        description: The date the claim was originally recorded. Based on admission
-          date, but if null then filled in by claim start date followed by claim
-          end date.
+        description: The date the claim was originally recorded. Based on admission date, but if null then filled in by claim start date followed by claim end date.
         config:
           meta:
             data_type: date
@@ -351,8 +314,7 @@ models:
             data_type: varchar
             is_primary_key: true
       - name: rendering_npi
-        description: The National Provider Identifier (NPI) of the physician who
-          rendered services to the beneficiary.
+        description: The National Provider Identifier (NPI) of the physician who rendered services to the beneficiary.
         config:
           meta:
             data_type: varchar
@@ -419,7 +381,8 @@ models:
             - 'suspect': condition is suspected to be present based on some other criteria besides claims diagnoses
         tests:
           - accepted_values:
-              values: [ 'coded', 'captured', 'suspect' ]
+              arguments:
+                values: ['coded', 'captured', 'suspect']
         config:
           meta:
             data_type: varchar
@@ -431,7 +394,8 @@ models:
             - 'clinical': HCC was identified in clinical data such as the EHR
         tests:
           - accepted_values:
-              values: [ 'payer', 'clinical' ]
+              arguments:
+                values: ['payer', 'clinical']
         config:
           meta:
             data_type: varchar
@@ -444,24 +408,16 @@ models:
             - 'closed - lower coefficient hcc in hierarchy group': An HCC in the same group was closed, but its coefficient is less than the prior year HCC
             - 'new': defined as an hcc that has not been coded in the past 2 years
             - 'open': for gaps and claims, it's a chronic condition appropriate for recapture that has not been documented in current collection year
-            - 'ineligible for recapture': the specific HCC in question is “Open” and no related/equivalent HCC has been closed, but it is not appropriate for risk adjustment because it’s not a chronic diagnosis.
+            - 'ineligible for recapture': the specific HCC in question is "Open" and no related/equivalent HCC has been closed, but it is not appropriate for risk adjustment because it’s not a chronic diagnosis.
         tests:
           - accepted_values:
-              values:
-                [
-                  'closed - higher coefficient hcc in hierarchy group',
-                  'closed',
-                  'closed - lower coefficient hcc in hierarchy group',
-                  'new',
-                  'open',
-                  'ineligible for recapture'
-                ]
+              arguments:
+                values: ['closed - higher coefficient hcc in hierarchy group', 'closed', 'closed - lower coefficient hcc in hierarchy group', 'new', 'open', 'ineligible for recapture']
         config:
           meta:
             data_type: varchar
       - name: hcc_chronic_flag
-        description: Whether the HCC is considered chronic or not. A 1 indicates the HCC
-          is chronic.
+        description: Whether the HCC is considered chronic or not. A 1 indicates the HCC is chronic.
         config:
           meta:
             data_type: integer
@@ -480,14 +436,12 @@ models:
           meta:
             data_type: integer
       - name: eligible_bene_flag
-        description: A 1 is indicated for a beneficiary who is in the eligibility files.
-          A 0 is indicated if they are not in the eligibility files.
+        description: A 1 is indicated for a beneficiary who is in the eligibility files. A 0 is indicated if they are not in the eligibility files.
         config:
           meta:
             data_type: integer
       - name: filtered_by_hierarchy_flag
-        description: Flag indicating whether the HCC was filtered out by HCC hierarchy
-          logic.
+        description: Flag indicating whether the HCC was filtered out by HCC hierarchy logic.
         config:
           meta:
             data_type: integer
@@ -500,7 +454,7 @@ models:
         {%- if var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_hcc_recapture
         {% else %}hcc_recapture{%- endif -%}
       alias: gap_status
-      tags: [ "hcc_recapture", "final" ]
+      tags: ["hcc_recapture", "final"]
       materialized: table
     data_tests:
       - dbt_utils.unique_combination_of_columns:
@@ -588,8 +542,7 @@ models:
             - 'closed using lower coefficient hcc in hierarchy group': An HCC in the same group was closed, but its coefficient is less than the prior year HCC
             - 'new': defined as an hcc that has not been coded in the past 2 years
             - 'open': for gaps and claims, it's a chronic condition appropriate for recapture that has not been documented in current collection year
-            - 'ineligible for recapture': the specific HCC in question is “Open” and no related/equivalent HCC has been closed, but it is not appropriate for risk adjustment because it’s not a chronic diagnosis.
+            - 'ineligible for recapture': the specific HCC in question is "Open" and no related/equivalent HCC has been closed, but it is not appropriate for risk adjustment because it’s not a chronic diagnosis.
         config:
           meta:
             data_type: varchar
-

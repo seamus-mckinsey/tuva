@@ -41,7 +41,6 @@ models:
       - name: condition_id
         description: >-
           Identifier for a condition record within a data source. This value should be populated on every record and should uniquely identify the condition when combined with data_source.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -79,10 +78,10 @@ models:
           meta:
             data_type: varchar
             is_primary_key: true
+            required_for_data_marts: []
       - name: person_id
         description: >-
           Globally unique identifier for the person associated with the condition. A person may have multiple patient IDs over time or across clinical source systems, but person_id should remain stable for the same person.
-        required_for_data_marts: ['ahrq_measures', 'ccsr', 'cms_chronic_conditions', 'cms_hccs', 'hcc_recapture', 'hcc_suspecting', 'quality_measures', 'semantic_layer', 'tuva_chronic_conditions']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -94,10 +93,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['ahrq_measures', 'ccsr', 'cms_chronic_conditions', 'cms_hccs', 'hcc_recapture', 'hcc_suspecting', 'quality_measures', 'semantic_layer', 'tuva_chronic_conditions']
       - name: patient_id
         description: >-
           Identifier that links the person to a particular clinical source system, for example a medical record number or MRN. A single person may have multiple patient IDs.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -111,10 +110,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: []
       - name: encounter_id
         description: >-
           Identifier for the clinical encounter associated with the condition. Populate this when the condition was documented during, or is linked to, a clinical encounter. Leave null when the condition is not encounter-specific.
-        required_for_data_marts: ['ahrq_measures', 'ccsr', 'quality_measures', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -127,10 +126,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['ahrq_measures', 'ccsr', 'quality_measures', 'semantic_layer']
       - name: recorded_date
         description: >-
           Date the condition was recorded or documented in the source system, formatted as YYYY-MM-DD.
-        required_for_data_marts: ['cms_chronic_conditions', 'cms_hccs', 'hcc_recapture', 'hcc_suspecting', 'quality_measures', 'tuva_chronic_conditions']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -178,10 +177,10 @@ models:
         config:
           meta:
             data_type: date
+            required_for_data_marts: ['cms_chronic_conditions', 'cms_hccs', 'hcc_recapture', 'hcc_suspecting', 'quality_measures', 'tuva_chronic_conditions']
       - name: onset_date
         description: >-
           Date the condition began or was first clinically present, formatted as YYYY-MM-DD. Leave null when the onset date is unknown or unavailable.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -221,10 +220,10 @@ models:
         config:
           meta:
             data_type: date
+            required_for_data_marts: []
       - name: resolved_date
         description: >-
           Date the condition resolved or became inactive, formatted as YYYY-MM-DD. Leave null when the condition is active, unresolved, or the resolved date is unknown.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -268,10 +267,10 @@ models:
         config:
           meta:
             data_type: date
+            required_for_data_marts: []
       - name: status
         description: >-
           Source status of the condition record, such as active, resolved, inactive, historical, suspected, or entered-in-error. Preserve the source status value when available.
-        required_for_data_marts: ['hcc_recapture']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -291,10 +290,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['hcc_recapture']
       - name: condition_type
         description: >-
           Category of condition record, such as problem, encounter diagnosis, admitting diagnosis, or discharge diagnosis. This field helps distinguish problem list conditions from diagnoses documented for an encounter in a clinical source system.
-        required_for_data_marts: ['cms_hccs', 'hcc_recapture', 'hcc_suspecting']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -314,10 +313,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['cms_hccs', 'hcc_recapture', 'hcc_suspecting']
       - name: source_code_type
         description: >-
           Code system for source_code. Accepted values are icd-10-cm, icd-9-cm, and snomed-ct.
-        required_for_data_marts: ['quality_measures']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -351,10 +350,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['quality_measures']
       - name: source_code
         description: >-
           Condition code from the source system before Tuva normalization. For ICD diagnosis codes, the source may include or omit decimal formatting.
-        required_for_data_marts: ['quality_measures']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -376,10 +375,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['quality_measures']
       - name: source_description
         description: >-
           Human-readable description of the source condition code or condition record, when available from the source system.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -391,10 +390,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: []
       - name: condition_rank
         description: >-
           Numeric rank of the condition when the source provides diagnosis ordering. A value of 1 generally represents the primary diagnosis, and values greater than 1 represent secondary diagnoses. Leave null when the condition is not ranked, such as many problem list records.
-        required_for_data_marts: ['ccsr', 'cms_hccs', 'hcc_suspecting']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -414,10 +413,10 @@ models:
         config:
           meta:
             data_type: number
+            required_for_data_marts: ['ccsr', 'cms_hccs', 'hcc_suspecting']
       - name: present_on_admit_code
         description: >-
           Present-on-admission indicator for the condition, when applicable. This is most relevant for inpatient facility diagnoses and should be left null when not applicable or unavailable.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -429,10 +428,10 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: []
       - name: ingest_datetime
         description: >-
           Date and time the source condition record was loaded into the data warehouse. This is useful when multiple versions of the same condition record are received over time.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -467,10 +466,10 @@ models:
         config:
           meta:
             data_type: timestamp
+            required_for_data_marts: []
       - name: data_source
         description: >-
           User-defined name that identifies the source of the condition data, for example Epic, Athena Health, or Cerner. This value should be populated on every record.
-        required_for_data_marts: ['ahrq_measures', 'ccsr', 'cms_chronic_conditions', 'cms_hccs', 'hcc_recapture', 'hcc_suspecting', 'semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -491,3 +490,4 @@ models:
           meta:
             data_type: varchar
             is_primary_key: true
+            required_for_data_marts: ['ahrq_measures', 'ccsr', 'cms_chronic_conditions', 'cms_hccs', 'hcc_recapture', 'hcc_suspecting', 'semantic_layer']

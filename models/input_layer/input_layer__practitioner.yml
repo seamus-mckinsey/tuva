@@ -36,7 +36,6 @@ models:
     columns:
       - name: practitioner_id
         description: Source-system identifier for the practitioner. This should be the same identifier used in other clinical input layer tables when referencing the practitioner. This field does not need to be an NPI and is unique only within a data source.
-        required_for_data_marts: ['semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -74,9 +73,9 @@ models:
           meta:
             data_type: varchar
             is_primary_key: true
+            required_for_data_marts: ['semantic_layer']
       - name: npi
         description: The practitioner's 10-digit National Provider Identifier, when available. This should be the individual practitioner NPI, not a facility or organization NPI. If the source only has a local practitioner ID, populate practitioner_id and leave npi null.
-        required_for_data_marts: ['semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -96,9 +95,9 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['semantic_layer']
       - name: first_name
         description: First name of the practitioner as represented in the source system.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -118,9 +117,9 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: []
       - name: last_name
         description: Last name of the practitioner as represented in the source system.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -140,9 +139,9 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: []
       - name: practice_affiliation
         description: Practice, group, department, clinic, or organization with which the practitioner is affiliated in the source system.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -162,9 +161,9 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: []
       - name: specialty
         description: Primary clinical specialty for the practitioner, such as family medicine, cardiology, or emergency medicine.
-        required_for_data_marts: ['semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -184,9 +183,9 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: ['semantic_layer']
       - name: sub_specialty
         description: More specific specialty or subspecialty for the practitioner, when available.
-        required_for_data_marts: []
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -206,9 +205,9 @@ models:
         config:
           meta:
             data_type: varchar
+            required_for_data_marts: []
       - name: data_source
         description: User-configured source system identifier, such as Epic, Athena Health, or Cerner. This field is part of the primary key with practitioner_id.
-        required_for_data_marts: ['semantic_layer']
         tests:
           - the_tuva_project.expect_column_to_exist:
               config:
@@ -229,3 +228,4 @@ models:
           meta:
             data_type: varchar
             is_primary_key: true
+            required_for_data_marts: ['semantic_layer']
