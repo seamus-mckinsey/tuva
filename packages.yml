@@ -6,6 +6,6 @@ packages:
     install_prerelease: false
     ## Docs: https://docs.elementary-data.com
   - git: https://github.com/seamus-mckinsey/dbt-data-reliability.git
-    revision: 9ad6c56e6bba8c2a921d05aa64693242979ea7d7
+    revision: cce26a476004aa946816459a75c86771ac35704f
 
 
