@@ -1,0 +1,14 @@
+models/core/extension_column_unit_tests.yml
+  h_773a9a7dede145 61-76,116-138
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "271b8c5c0d1e6af3a1ce6169208808350f66fef3",
+  "prompts": {},
+  "humans": {
+    "h_773a9a7dede145": {
+      "author": "Seamus McKinsey <seamus.mckinsey@color.com>"
+    }
+  }
+}
